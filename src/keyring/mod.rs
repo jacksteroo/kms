@@ -18,6 +18,7 @@ use tendermint::TendermintKey;
 /// File encoding for software-backed secret keys
 pub type SecretKeyEncoding = subtle_encoding::Base64;
 
+/// Signing keyring
 pub struct KeyRing {
     /// Keys in the keyring
     keys: BTreeMap<TendermintKey, Signer>,

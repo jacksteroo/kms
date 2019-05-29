@@ -1,8 +1,12 @@
+//! Application-local YubiHSM configuration and initialization
+
 use crate::{
-    config::{provider::yubihsm::YubihsmConfig, KmsConfig},
+    config::provider::yubihsm::YubihsmConfig,
     error::{KmsError, KmsErrorKind},
+    prelude::*,
 };
-use abscissa::{Error, GlobalConfig};
+use abscissa::Error;
+use lazy_static::lazy_static;
 use std::{
     process,
     sync::{Mutex, MutexGuard},
@@ -15,7 +19,10 @@ use {
 };
 
 lazy_static! {
+    /// Connection to the YubiHSM device
     static ref HSM_CONNECTOR: Connector = init_connector();
+
+    /// Authenticated client connection to the YubiHSM device
     static ref HSM_CLIENT: Mutex<Client> = Mutex::new(init_client());
 }
 
@@ -67,7 +74,7 @@ fn init_client() -> Client {
 
 /// Get the YubiHSM-related configuration
 pub fn config() -> YubihsmConfig {
-    let kms_config = KmsConfig::get_global();
+    let kms_config = app_config();
     let yubihsm_configs = &kms_config.providers.yubihsm;
 
     if yubihsm_configs.len() != 1 {

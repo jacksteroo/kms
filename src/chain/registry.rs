@@ -5,9 +5,11 @@ use crate::{
     error::{KmsError, KmsErrorKind::*},
     keyring,
 };
+use lazy_static::lazy_static;
 use std::{collections::BTreeMap, sync::RwLock};
 
 lazy_static! {
+    /// State of Tendermint blockchain networks
     pub static ref REGISTRY: GlobalRegistry = GlobalRegistry::default();
 }
 

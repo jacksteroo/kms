@@ -1,4 +1,4 @@
-// Error types
+//! Error types
 
 use crate::{chain, prost};
 use abscissa::Error;

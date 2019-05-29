@@ -504,7 +504,6 @@ fn test_handle_and_sign_get_publickey() {
 
         let pk_resp = PubKeyResponse::decode(&resp).expect("decoding public key failed");
         assert_ne!(pk_resp.pub_key_ed25519.len(), 0);
-        println!("got public key: {:?}", pk_resp.pub_key_ed25519);
     });
 }
 

@@ -44,7 +44,7 @@ pub struct Session<Connection> {
 }
 
 impl Session<SecretConnection<TcpStream>> {
-    /// Create a new session with the validator at the given address/port
+    /// Create a new validator connection at the given TCP/IP address/port
     pub fn connect_tcp(
         chain_id: chain::Id,
         max_height: Option<tendermint::block::Height>,
@@ -90,6 +90,7 @@ impl Session<SecretConnection<TcpStream>> {
 }
 
 impl Session<UnixConnection<UnixStream>> {
+    /// Create a new Unix domain socket connection to a validator
     pub fn connect_unix(
         chain_id: chain::Id,
         max_height: Option<tendermint::block::Height>,

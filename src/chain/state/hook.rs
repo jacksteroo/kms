@@ -4,6 +4,7 @@ use crate::{
     config::chain::HookConfig,
     error::{KmsError, KmsErrorKind::HookError},
 };
+use serde::Deserialize;
 use std::{process::Command, time::Duration};
 use tendermint::block;
 use wait_timeout::ChildExt;
